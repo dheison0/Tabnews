@@ -24,7 +24,7 @@ class ArticleList extends Component {
         data={this.props.articles}
         refreshing={false}
         getItemLayout={getItemLayout}
-        onEndReachedThreshold={12}
+        onEndReachedThreshold={0.5}
         onRefresh={this.props.onReload}
         onEndReached={this.props.loadMore}
         keyExtractor={keyExtractor}
