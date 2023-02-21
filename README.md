@@ -11,7 +11,8 @@ JavaScript com React Native e estou planejando colocar algumas funções bem leg
   - [ ] Criar a tela inicial
     - [X] Componente de carregamento
     - [X] Componente de renderização do item na lista
-    - [ ] Modal para troca de estratégia
+    - [X] Modal para troca de estratégia
+    - [ ] Criar Componente para mostrar erros no carregamento
   - [ ] Criar a página da postagem
     - [ ] Adicionar o markdown formatado
     - [ ] Criar componente de comentário
