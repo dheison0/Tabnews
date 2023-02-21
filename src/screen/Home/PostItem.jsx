@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const PostItem = ({ post, navigation }) => (
@@ -28,4 +29,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default PostItem;
+export default memo(PostItem);

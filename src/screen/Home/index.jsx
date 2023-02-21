@@ -1,9 +1,10 @@
 import { Component } from 'react';
 import { View } from 'react-native';
 import { TabNews } from '../../libs/tabnews';
+import { prepareData } from './utils';
+import { StrategyChooser, StrategyChooserHeaderButton } from './StrategyChooser';
 import LoadingIndicator from '../../component/LoadingIndicator';
 import PostList from './PostList';
-import { prepareData } from './utils';
 
 
 class HomeScreen extends Component {
@@ -14,26 +15,46 @@ class HomeScreen extends Component {
     loading: false,
     endOfResults: false,
     error: null,
+    strategyChooserVisible: false,
+    ordenationStrategy: 'relevant'
   }
 
   constructor(props) {
     super(props);
     this.state = { ...this.defaultState };
+    this.props.navigation.setOptions({
+      title: "Postagens",
+      headerRight: () => (
+        <StrategyChooserHeaderButton
+          onPress={() => this.toggleStrategyChooser()}
+        />
+      )
+    });
   }
 
   componentDidMount() {
     this.loadContent();
   }
 
+  toggleStrategyChooser() {
+    this.setState({ strategyChooserVisible: !this.state.strategyChooserVisible })
+  }
+
   reload() {
-    this.setState({ ...this.defaultState }, this.loadContent)
+    this.setState(
+      {
+        ...this.defaultState,
+        ordenationStrategy: this.state.ordenationStrategy
+      },
+      this.loadContent
+    )
   }
 
   loadContent() {
     if (this.state.loading || this.state.endOfResults) return;
     this.setState(
       { loading: true },
-      () => this.tabnews.getContents(this.state.page, 'relevant')
+      () => this.tabnews.getContents(this.state.page, this.state.ordenationStrategy)
         .then(newData => {
           if (newData.length === 0) {
             this.setState({ loading: false, endOfResults: true });
@@ -49,8 +70,16 @@ class HomeScreen extends Component {
   }
 
   render() {
+    const onStrategyChoose = (value) => {
+      this.setState({ ordenationStrategy: value }, this.reload);
+    };
     return (
       <View style={{ flex: 1 }}>
+        <StrategyChooser
+          visible={this.state.strategyChooserVisible}
+          onRequestClose={() => this.toggleStrategyChooser()}
+          onChoose={onStrategyChoose}
+        />
         {this.state.data.length > 0 ? (
           <PostList
             data={this.state.data}

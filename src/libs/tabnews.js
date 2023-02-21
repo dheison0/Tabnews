@@ -1,6 +1,10 @@
 import axios from 'axios'
 
-const homepageStrategies = {}
+const homepageStrategies = [
+  { title: "Relevantes", value: 'relevant' },
+  { title: "Recentes", value: 'new' },
+  { title: "Antigos", value: 'old' }
+];
 
 class TabNews {
   baseUrl = "https://www.tabnews.com.br/api/v1"
