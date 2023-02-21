@@ -1,6 +1,6 @@
 import { Component } from 'react';
-import { View, FlatList, Text } from 'react-native';
-import { TabNews } from '../../../utils/tabnews';
+import { View } from 'react-native';
+import { TabNews } from '../../libs/tabnews';
 import LoadingIndicator from '../../component/LoadingIndicator';
 import PostList from './PostList';
 import { prepareData } from './utils';
@@ -12,8 +12,8 @@ class HomeScreen extends Component {
     data: [],
     page: 1,
     loading: false,
+    endOfResults: false,
     error: null,
-    endReached: false
   }
 
   constructor(props) {
@@ -25,16 +25,26 @@ class HomeScreen extends Component {
     this.loadContent();
   }
 
+  reload() {
+    this.setState({ ...this.defaultState }, this.loadContent)
+  }
+
   loadContent() {
-    if (this.state.loading) return;
+    if (this.state.loading || this.state.endOfResults) return;
     this.setState(
       { loading: true },
       () => this.tabnews.getContents(this.state.page, 'relevant')
-        .then(newData => this.setState({
-          data: [...this.state.data, ...newData.map(prepareData)],
-          page: this.state.page + 1,
-          loading: false
-        }))
+        .then(newData => {
+          if (newData.length === 0) {
+            this.setState({ loading: false, endOfResults: true });
+          } else {
+            this.setState({
+              data: [...this.state.data, ...newData.map(prepareData)],
+              page: this.state.page + 1,
+              loading: false
+            })
+          }
+        })
     );
   }
 
@@ -44,9 +54,10 @@ class HomeScreen extends Component {
         {this.state.data.length > 0 ? (
           <PostList
             data={this.state.data}
-            endReached={this.state.endReached}
+            endOfResults={this.state.endOfResults}
             loadMore={() => this.loadContent()}
             navigation={this.props.navigation}
+            reload={() => this.reload()}
           />
         ) : (
           <LoadingIndicator />

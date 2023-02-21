@@ -1,18 +1,31 @@
-import { View, Text, TouchableOpacity } from 'react-native';
-
-const textPosition = (p) => ({ flex: 1, textAlign: p });
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const PostItem = ({ post, navigation }) => (
   <TouchableOpacity onPress={() => navigation.navigate('Post', { post })}>
-    <View style={{ margin: 6 }}>
-      <Text style={{ fontSize: 15 }}>{post.title}</Text>
-      <View style={{ flex: 1, flexDirection: 'row', marginTop: 3 }}>
-        <Text style={textPosition("left")}>{post.owner}</Text>
-        <Text style={textPosition("center")}>{post.tabcoins} tabcoins</Text>
-        <Text style={textPosition("right")}>{post.time}</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>{post.title}</Text>
+      <View style={styles.informations}>
+        <Text style={{ flex: 1, textAlign: "left" }}>{post.owner}</Text>
+        <Text style={{ flex: 1, textAlign: "center" }}>{post.tabcoins} tabcoins</Text>
+        <Text style={{ flex: 1, textAlign: "right" }}>{post.time}</Text>
       </View>
     </View>
   </TouchableOpacity>
 );
+
+const styles = StyleSheet.create({
+  container: {
+    margin: 6
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: "500"
+  },
+  informations: {
+    flex: 1,
+    flexDirection: 'row',
+    marginTop: 3
+  }
+});
 
 export default PostItem;
