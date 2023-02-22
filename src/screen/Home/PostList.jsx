@@ -1,38 +1,29 @@
-import { Component } from 'react';
+import { memo } from 'react';
 import { FlatList } from 'react-native';
 import PostItem from './PostItem';
 import LoadingIndicator from '../../component/LoadingIndicator';
 
 
-class PostList extends Component {
-  shouldComponentUpdate(nextProps) {
-    return nextProps !== this.props;
-  }
-  render() {
-    const renderItem = ({ item }) => (
-      <PostItem
-        post={item}
-        navigation={this.props.navigation}
-      />
-    );
-    return (
-      <FlatList
-        data={this.props.data}
-        renderItem={renderItem}
-        onEndReached={this.props.loadMore}
-        onRefresh={this.props.reload}
-        refreshing={false}
-        ListFooterComponent={() => (
-          <>
-            {this.props.endOfResults ? null :
-              <LoadingIndicator footer={true} />
-            }
-          </>
-        )}
-      />
-    );
-  }
+function PostList({ data, loadMore, reload, endOfResults, navigation }) {
+  const renderItem = ({ item }) => (
+    <PostItem
+      post={item}
+      navigation={navigation}
+    />
+  );
+  return (
+    <FlatList
+      data={data}
+      renderItem={renderItem}
+      onEndReached={loadMore}
+      onRefresh={reload}
+      refreshing={false}
+      ListFooterComponent={() => (
+        <>{endOfResults ? null : <LoadingIndicator footer={true} />}</>
+      )}
+    />
+  );
 }
 
 
-export default PostList;
+export default memo(PostList);
