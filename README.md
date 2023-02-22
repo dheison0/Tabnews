@@ -8,7 +8,7 @@ JavaScript com React Native e estou planejando colocar algumas funções bem leg
 
   - [X] Inicializar o projeto e criar uma classe para controle da API
   - [X] Adicionar as janelas de navegação usando Stack e Drawer navigation
-  - [ ] Criar a tela inicial
+  - [X] Criar a tela inicial
     - [X] Componente de carregamento
     - [X] Componente de renderização do item na lista
     - [X] Modal para troca de estratégia
