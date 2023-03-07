@@ -26,7 +26,12 @@ class TabNews {
 
   async getPost(user, postSlug) {
     const response = this.apiGet(`contents/${user}/${postSlug}`);
-    return response
+    return response;
+  }
+
+  async getComments(user, postSlug) {
+    const response = this.apiGet(`contents/${user}/${postSlug}/children`);
+    return response;
   }
 }
 
@@ -39,21 +44,23 @@ function errorHandler(err) {
     case AxiosError.ERR_NOT_SUPPORT:
       return "O pedido enviado não é suportado no servidor!";
   }
-  switch (err.response.status) {
-    case 503:
-      return "O servidor não conseguiu processar o pedido!";
-    case 502:
-      return "O gateway não conseguiu acessar o servidor principal!";
-    case 500:
-      return "Ocorreu um erro interno no servidor!";
-    case 404:
-      return "A página desejada não foi encontrada no servidor!";
-    case 403:
-      return "O acesso a essa página foi negado!";
-    case 401:
-      return "Você não tem alteração para acessar!";
-    case 400:
-      return "O pedido não foi bem formatado!";
+  if (err.response) {
+    switch (err.response.status) {
+      case 503:
+        return "O servidor não conseguiu processar o pedido!";
+      case 502:
+        return "O gateway não conseguiu acessar o servidor principal!";
+      case 500:
+        return "Ocorreu um erro interno no servidor!";
+      case 404:
+        return "A página desejada não foi encontrada no servidor!";
+      case 403:
+        return "O acesso a essa página foi negado!";
+      case 401:
+        return "Você não tem alteração para acessar!";
+      case 400:
+        return "O pedido não foi bem formatado!";
+    }
   }
   return `Erro desconhecido!\n${toString(err)}`;
 }

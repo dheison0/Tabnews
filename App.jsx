@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from "@expo/vector-icons";
 import HomeScreen from './src/screen/Home';
+import PostScreen from './src/screen/Post';
 
 
 const Stack = createStackNavigator();
@@ -28,6 +29,7 @@ const App = () => (
   <NavigationContainer>
     <Stack.Navigator>
       <Stack.Screen name="Main" options={{ headerShown: false }} component={TabNavigator} />
+      <Stack.Screen name="Post" options={{ title: "Postagem" }} component={PostScreen} />
     </Stack.Navigator>
     <StatusBar style="auto" />
   </NavigationContainer>

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 
 
@@ -5,14 +6,14 @@ const INDICATOR_FOOTER_SIZE = 36;
 const INDICATOR_NORMAL_SIZE = 56;
 
 
-const LoadingIndicator = ({ footer }) => (
+const LoadingIndicator = ({ footer, message }) => (
   <View style={[styles.container, footer ? styles.footer : null]}>
     <ActivityIndicator
       style={styles.indicator}
       size={footer ? INDICATOR_FOOTER_SIZE : INDICATOR_NORMAL_SIZE}
       color="black"
     />
-    <Text style={styles.message}>Carregando...</Text>
+    <Text style={styles.message}>{message || "Carregando..."}</Text>
   </View>
 );
 
@@ -31,9 +32,9 @@ const styles = StyleSheet.create({
     margin: 8
   },
   message: {
-    fontSize: 15
+    fontSize: 16
   }
 });
 
 
-export default LoadingIndicator;
+export default memo(LoadingIndicator);
