@@ -1,21 +1,21 @@
-import { memo } from 'react';
-import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
+import { memo } from 'react'
+import { View, Text, ActivityIndicator, StyleSheet } from 'react-native'
 
 
-const INDICATOR_FOOTER_SIZE = 36;
-const INDICATOR_NORMAL_SIZE = 56;
+const FOOTER_SIZE = 36
+const NORMAL_SIZE = 56
 
 
-const LoadingIndicator = ({ footer, message }) => (
+const LoadingIndicator = ({ footer = false, message = "Carregando..." }) => (
   <View style={[styles.container, footer ? styles.footer : null]}>
     <ActivityIndicator
       style={styles.indicator}
-      size={footer ? INDICATOR_FOOTER_SIZE : INDICATOR_NORMAL_SIZE}
+      size={footer ? FOOTER_SIZE : NORMAL_SIZE}
       color="black"
     />
-    <Text style={styles.message}>{message || "Carregando..."}</Text>
+    <Text style={styles.message}>{message}</Text>
   </View>
-);
+)
 
 
 const styles = StyleSheet.create({
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   message: {
     fontSize: 16
   }
-});
+})
 
 
-export default memo(LoadingIndicator);
+export default memo(LoadingIndicator)

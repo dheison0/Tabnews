@@ -1,17 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons } from "@expo/vector-icons";
-import HomeScreen from './src/screen/Home';
-import PostScreen from './src/screen/Post';
+import { StatusBar } from 'expo-status-bar'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { Ionicons } from '@expo/vector-icons'
+import HomeScreen from './src/screen/Home'
+import PostScreen from './src/screen/Post'
 
 
-const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator()
+const Tab = createBottomTabNavigator()
 const icons = {
-  Home: ['md-home', 'md-home-outline']
-};
+  Home: ['md-home', 'md-home-outline'],
+  bug: ['md-bug', 'md-bug-outline']
+}
 
 
 const TabNavigator = () => (
@@ -22,7 +23,7 @@ const TabNavigator = () => (
     })}>
     <Tab.Screen name="Home" options={{ title: "Inicio" }} component={HomeScreen} />
   </Tab.Navigator>
-);
+)
 
 
 const App = () => (
@@ -33,17 +34,14 @@ const App = () => (
     </Stack.Navigator>
     <StatusBar style="auto" />
   </NavigationContainer>
-);
+)
 
 
 function chooseTabBarIcon(route, focused) {
-  let icon = focused ? 'md-bug' : 'md-bug-outline';
-  if (icons[route.name]) {
-    const iconPair = icons[route.name]
-    icon = focused ? iconPair[0] : iconPair[1];
-  }
-  return (<Ionicons name={icon} size={30} />);
+  const iconPair = icons[route.name] ?? icons.bug
+  let icon = focused ? iconPair[0] : iconPair[1]
+  return (<Ionicons name={icon} size={30} />)
 }
 
 
-export default App;
+export default App

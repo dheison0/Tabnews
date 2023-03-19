@@ -1,5 +1,5 @@
-import { View, Text, Button, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { View, Text, Button, StyleSheet } from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
 
 const Error = ({ message, onRetry }) => (
   <View style={styles.container}>
@@ -7,7 +7,7 @@ const Error = ({ message, onRetry }) => (
     <Text style={styles.message}>{message}</Text>
     {onRetry ? <Button onPress={onRetry} title="Tentar novamente" /> : null}
   </View>
-);
+)
 
 const styles = StyleSheet.create({
   container: {
@@ -23,4 +23,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Error;
+export default Error

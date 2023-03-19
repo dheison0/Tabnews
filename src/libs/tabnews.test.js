@@ -1,5 +1,5 @@
-import { AxiosError } from "axios";
-import { TabNews } from "./tabnews";
+import { AxiosError } from "axios"
+import { TabNews } from "./tabnews"
 
 
 describe("getContents", () => {

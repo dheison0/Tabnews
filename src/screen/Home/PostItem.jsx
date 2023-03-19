@@ -1,18 +1,18 @@
-import { memo } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { memo } from 'react'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 
 const PostItem = ({ post, navigation }) => (
-  <TouchableOpacity onPress={() => navigation.navigate('Post', { post })}>
+  <TouchableOpacity onPress={() => navigation.navigate("Post", { post })}>
     <View style={styles.container}>
       <Text style={styles.title}>{post.title}</Text>
-      <View style={styles.informations}>
+      <View style={styles.information}>
         <Text style={{ flex: 1, textAlign: "left" }}>{post.owner}</Text>
         <Text style={{ flex: 1, textAlign: "center" }}>{post.tabcoins} tabcoins</Text>
         <Text style={{ flex: 1, textAlign: "right" }}>{post.time}</Text>
       </View>
     </View>
   </TouchableOpacity>
-);
+)
 
 const styles = StyleSheet.create({
   container: {
@@ -22,11 +22,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "500"
   },
-  informations: {
+  information: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: "row",
     marginTop: 3
   }
-});
+})
 
-export default memo(PostItem);
+export default memo(PostItem)

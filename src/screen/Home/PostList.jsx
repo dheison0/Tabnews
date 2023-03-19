@@ -1,7 +1,7 @@
-import { memo } from 'react';
-import { FlatList } from 'react-native';
-import PostItem from './PostItem';
-import LoadingIndicator from '../../component/LoadingIndicator';
+import { memo } from 'react'
+import { FlatList } from 'react-native'
+import PostItem from './PostItem'
+import LoadingIndicator from '../../component/LoadingIndicator'
 
 
 function PostList({ data, loadMore, reload, endOfResults, navigation }) {
@@ -10,7 +10,7 @@ function PostList({ data, loadMore, reload, endOfResults, navigation }) {
       post={item}
       navigation={navigation}
     />
-  );
+  )
   return (
     <FlatList
       data={data}
@@ -22,8 +22,8 @@ function PostList({ data, loadMore, reload, endOfResults, navigation }) {
         <>{endOfResults ? null : <LoadingIndicator footer={true} />}</>
       )}
     />
-  );
+  )
 }
 
 
-export default memo(PostList);
+export default memo(PostList)

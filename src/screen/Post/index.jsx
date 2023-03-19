@@ -1,12 +1,12 @@
-import { PureComponent } from "react";
-import { View, Text, ScrollView } from "react-native";
-import Error from "../../component/Error";
-import LoadingIndicator from "../../component/LoadingIndicator";
-import { errorHandler, TabNews } from "../../libs/tabnews";
-import Markdown from 'react-native-markdown-display';
-import styles from "./styles";
-import CommentsContainer from "./CommentsContainer";
-import striptags from "striptags";
+import { PureComponent } from 'react'
+import { View, Text, ScrollView } from 'react-native'
+import Error from '../../component/Error'
+import LoadingIndicator from '../../component/LoadingIndicator'
+import { errorHandler, TabNews } from '../../libs/tabnews'
+import Markdown from 'react-native-markdown-display'
+import styles from './styles'
+import CommentsContainer from './CommentsContainer'
+import striptags from 'striptags'
 
 
 class PostScreen extends PureComponent {
@@ -18,26 +18,26 @@ class PostScreen extends PureComponent {
   }
 
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   componentDidMount() {
-    this.loadData();
+    this.loadData()
   }
 
   reload() {
-    this.setState({ loading: true }, this.loadData);
+    this.setState({ loading: true }, this.loadData)
   }
 
   loadData() {
-    const { post } = this.props.route.params;
+    const { post } = this.props.route.params
     this.tabnews.getPost(post.owner, post.slug)
       .then(data => this.processMarkdown(data))
-      .catch(err => this.setState({ loading: false, error: errorHandler(err) }));
+      .catch(err => this.setState({ loading: false, error: errorHandler(err) }))
   }
 
   processMarkdown(post) {
-    const stripedContent = striptags(post.body, ['a']);
+    const stripedContent = striptags(post.body, ['a'])
     this.setState({
       postComponent: (
         <ScrollView>
@@ -56,14 +56,16 @@ class PostScreen extends PureComponent {
   render() {
     return (
       <View style={styles.root}>
-        {this.state.loading ? (
-          <LoadingIndicator />
-        ) : (this.state.error ? (
-          <Error message={this.state.error} onRetry={() => this.reload()} />
-        ) : this.state.postComponent)}
+        {this.state.postComponent ?? (
+          this.state.error ? (
+            <Error message={this.state.error} onRetry={() => this.reload()} />
+          ) : (
+            <LoadingIndicator />
+          )
+        )}
       </View>
     )
   }
 }
 
-export default PostScreen;
+export default PostScreen
