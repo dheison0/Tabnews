@@ -43,26 +43,26 @@ export const StrategyChooser = memo(({ visible, onRequestClose, onChoose }) => (
 
 const styles = StyleSheet.create({
   headerButton: {
-    margin: 8,
+    margin: 8
   },
   centeredView: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   modalView: {
     backgroundColor: 'white',
     borderRadius: 15,
     padding: 20,
     alignItems: 'center',
-    elevation: 5,
+    elevation: 5
   },
   title: {
     fontSize: 18,
     marginBottom: 8
   },
   optionsBox: {
-    marginHorizontal: 25,
+    marginHorizontal: 25
   },
   button: {
     margin: 2,
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     marginVertical: 10,
-    marginHorizontal: 20,
+    marginHorizontal: 20
   },
   optionButton: {
     backgroundColor: '#99e'

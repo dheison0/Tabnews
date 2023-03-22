@@ -6,7 +6,6 @@ import { Ionicons } from '@expo/vector-icons'
 import HomeScreen from './src/screen/Home'
 import PostScreen from './src/screen/Post'
 
-
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
 const icons = {
@@ -14,34 +13,30 @@ const icons = {
   bug: ['md-bug', 'md-bug-outline']
 }
 
-
 const TabNavigator = () => (
   <Tab.Navigator
     screenOptions={({ route }) => ({
       tabBarIcon: ({ focused }) => chooseTabBarIcon(route, focused),
       tabBarShowLabel: false
     })}>
-    <Tab.Screen name="Home" options={{ title: "Inicio" }} component={HomeScreen} />
+    <Tab.Screen name="Home" options={{ title: 'Inicio' }} component={HomeScreen} />
   </Tab.Navigator>
 )
-
 
 const App = () => (
   <NavigationContainer>
     <Stack.Navigator>
       <Stack.Screen name="Main" options={{ headerShown: false }} component={TabNavigator} />
-      <Stack.Screen name="Post" options={{ title: "Postagem" }} component={PostScreen} />
+      <Stack.Screen name="Post" options={{ title: 'Postagem' }} component={PostScreen} />
     </Stack.Navigator>
     <StatusBar style="auto" />
   </NavigationContainer>
 )
 
-
-function chooseTabBarIcon(route, focused) {
+function chooseTabBarIcon (route, focused) {
   const iconPair = icons[route.name] ?? icons.bug
-  let icon = focused ? iconPair[0] : iconPair[1]
+  const icon = focused ? iconPair[0] : iconPair[1]
   return (<Ionicons name={icon} size={30} />)
 }
-
 
 export default App

@@ -1,8 +1,7 @@
-import { memo } from 'react';
-import { View, Text, StyleSheet, Pressable } from 'react-native';
-import Markdown from 'react-native-markdown-display';
-import striptags from "striptags";
-
+import { memo } from 'react'
+import { View, Text, StyleSheet, Pressable } from 'react-native'
+import Markdown from 'react-native-markdown-display'
+import striptags from 'striptags'
 
 const Comment = ({ item, onCommentClicked, onUsernameClicked }) => (
   <Pressable style={styles.container} onPress={onCommentClicked}>
@@ -14,8 +13,7 @@ const Comment = ({ item, onCommentClicked, onUsernameClicked }) => (
     </View>
     <Markdown children={striptags(item.body, ['a'])} />
   </Pressable>
-);
-
+)
 
 const styles = StyleSheet.create({
   container: {
@@ -23,7 +21,7 @@ const styles = StyleSheet.create({
     padding: 3,
     borderWidth: 2,
     borderRadius: 6,
-    borderColor: '#556',
+    borderColor: '#556'
   },
   header: {
     flexDirection: 'row',
@@ -32,7 +30,6 @@ const styles = StyleSheet.create({
   user: {
     color: '#559'
   }
-});
+})
 
-
-export default memo(Comment);
+export default memo(Comment)

@@ -7,7 +7,6 @@ import LoadingIndicator from '../../component/LoadingIndicator'
 import PostList from './PostList'
 import Error from '../../component/Error'
 
-
 class HomeScreen extends Component {
   tabnews = new TabNews()
   defaultState = {
@@ -20,11 +19,11 @@ class HomeScreen extends Component {
     ordinationStrategy: 'relevant'
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = { ...this.defaultState }
     this.props.navigation.setOptions({
-      title: "Postagens",
+      title: 'Postagens',
       headerRight: () => (
         <StrategyChooserHeaderButton
           onPress={() => this.toggleStrategyChooser()}
@@ -33,15 +32,15 @@ class HomeScreen extends Component {
     })
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.loadContent()
   }
 
-  toggleStrategyChooser() {
+  toggleStrategyChooser () {
     this.setState({ strategyChooserVisible: !this.state.strategyChooserVisible })
   }
 
-  reload() {
+  reload () {
     this.setState(
       {
         ...this.defaultState,
@@ -51,7 +50,7 @@ class HomeScreen extends Component {
     )
   }
 
-  loadContent() {
+  loadContent () {
     if (this.state.loading || this.state.endOfResults) return
 
     const onResponse = newData => {
@@ -74,10 +73,10 @@ class HomeScreen extends Component {
     }
 
     const onError = err => {
-      let newState = { loading: false }
+      const newState = { loading: false }
       const errorMessage = errorHandler(err)
       if (this.state.data.length === 0) {
-        newState['error'] = errorMessage
+        newState.error = errorMessage
       } else {
         ToastAndroid.show(errorMessage, ToastAndroid.LONG)
       }
@@ -91,7 +90,7 @@ class HomeScreen extends Component {
     )
   }
 
-  render() {
+  render () {
     const onStrategyChoose = (value) => {
       this.setState({ ordinationStrategy: value }, this.reload)
     }
@@ -102,7 +101,8 @@ class HomeScreen extends Component {
           onRequestClose={() => this.toggleStrategyChooser()}
           onChoose={onStrategyChoose}
         />
-        {this.state.data.length > 0 ? (
+        {this.state.data.length > 0
+          ? (
           <PostList
             data={this.state.data}
             endOfResults={this.state.endOfResults}
@@ -110,18 +110,20 @@ class HomeScreen extends Component {
             navigation={this.props.navigation}
             reload={() => this.reload()}
           />
-        ) : (this.state.error ? (
+            )
+          : (this.state.error
+              ? (
           <Error
             message={this.state.error}
             onRetry={() => this.reload()}
           />
-        ) : (
+                )
+              : (
           <LoadingIndicator />
-        ))}
+                ))}
       </View>
     )
   }
 }
-
 
 export default HomeScreen

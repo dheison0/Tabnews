@@ -3,8 +3,7 @@ import { FlatList } from 'react-native'
 import PostItem from './PostItem'
 import LoadingIndicator from '../../component/LoadingIndicator'
 
-
-function PostList({ data, loadMore, reload, endOfResults, navigation }) {
+function PostList ({ data, loadMore, reload, endOfResults, navigation }) {
   const renderItem = ({ item }) => (
     <PostItem
       post={item}
@@ -24,6 +23,5 @@ function PostList({ data, loadMore, reload, endOfResults, navigation }) {
     />
   )
 }
-
 
 export default memo(PostList)

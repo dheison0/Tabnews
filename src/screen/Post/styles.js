@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   comments: {
     paddingTop: 4,
     borderTopWidth: 2,
-    borderTopColor: "#444",
+    borderTopColor: '#444',
     marginVertical: 8,
     fontSize: 18
   }

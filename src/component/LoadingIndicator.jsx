@@ -1,12 +1,10 @@
 import { memo } from 'react'
 import { View, Text, ActivityIndicator, StyleSheet } from 'react-native'
 
-
 const FOOTER_SIZE = 36
 const NORMAL_SIZE = 56
 
-
-const LoadingIndicator = ({ footer = false, message = "Carregando..." }) => (
+const LoadingIndicator = ({ footer = false, message = 'Carregando...' }) => (
   <View style={[styles.container, footer ? styles.footer : null]}>
     <ActivityIndicator
       style={styles.indicator}
@@ -17,12 +15,11 @@ const LoadingIndicator = ({ footer = false, message = "Carregando..." }) => (
   </View>
 )
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   footer: {
     flexDirection: 'row',
@@ -35,6 +32,5 @@ const styles = StyleSheet.create({
     fontSize: 16
   }
 })
-
 
 export default memo(LoadingIndicator)

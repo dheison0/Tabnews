@@ -8,7 +8,6 @@ import styles from './styles'
 import CommentsContainer from './CommentsContainer'
 import striptags from 'striptags'
 
-
 class PostScreen extends PureComponent {
   tabnews = new TabNews()
   state = {
@@ -17,26 +16,26 @@ class PostScreen extends PureComponent {
     postComponent: null
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.loadData()
   }
 
-  reload() {
+  reload () {
     this.setState({ loading: true }, this.loadData)
   }
 
-  loadData() {
+  loadData () {
     const { post } = this.props.route.params
     this.tabnews.getPost(post.owner, post.slug)
       .then(data => this.processMarkdown(data))
       .catch(err => this.setState({ loading: false, error: errorHandler(err) }))
   }
 
-  processMarkdown(post) {
+  processMarkdown (post) {
     const stripedContent = striptags(post.body, ['a'])
     this.setState({
       postComponent: (
@@ -53,15 +52,17 @@ class PostScreen extends PureComponent {
     })
   }
 
-  render() {
+  render () {
     return (
       <View style={styles.root}>
         {this.state.postComponent ?? (
-          this.state.error ? (
+          this.state.error
+            ? (
             <Error message={this.state.error} onRetry={() => this.reload()} />
-          ) : (
+              )
+            : (
             <LoadingIndicator />
-          )
+              )
         )}
       </View>
     )
