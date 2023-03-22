@@ -2,14 +2,18 @@ import { memo } from 'react'
 import { homepageStrategies } from '../../libs/tabnews'
 import { Modal, Text, View, Pressable, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
+import PropTypes from 'prop-types'
 
 export const StrategyChooserHeaderButton = ({ onPress }) => (
   <Pressable onPress={onPress} style={[styles.centeredView, styles.headerButton]}>
     <Ionicons size={20} name='md-filter' />
   </Pressable>
 )
+StrategyChooserHeaderButton.propTypes = {
+  onPress: PropTypes.func.isRequired
+}
 
-export const StrategyChooser = memo(({ visible, onRequestClose, onChoose }) => (
+const RawStrategyChooser = ({ visible, onRequestClose, onChoose }) => (
   <Modal
     animationType='slide'
     transparent={true}
@@ -39,7 +43,13 @@ export const StrategyChooser = memo(({ visible, onRequestClose, onChoose }) => (
       </View>
     </View>
   </Modal>
-))
+)
+RawStrategyChooser.propTypes = {
+  visible: PropTypes.bool.isRequired,
+  onRequestClose: PropTypes.func.isRequired,
+  onChoose: PropTypes.func
+}
+export const StrategyChooser = memo(RawStrategyChooser)
 
 const styles = StyleSheet.create({
   headerButton: {

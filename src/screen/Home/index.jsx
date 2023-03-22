@@ -3,9 +3,11 @@ import { ToastAndroid, View } from 'react-native'
 import { findStrategyInformationByValue, errorHandler, TabNews } from '../../libs/tabnews'
 import { prepareData } from './utils'
 import { StrategyChooser, StrategyChooserHeaderButton } from './StrategyChooser'
+import { NavigationProp } from '@react-navigation/native'
 import LoadingIndicator from '../../component/LoadingIndicator'
 import PostList from './PostList'
 import Error from '../../component/Error'
+import PropTypes from 'prop-types'
 
 class HomeScreen extends Component {
   tabnews = new TabNews()
@@ -17,6 +19,10 @@ class HomeScreen extends Component {
     error: null,
     strategyChooserVisible: false,
     ordinationStrategy: 'relevant'
+  }
+
+  propTypes = {
+    navigation: PropTypes.objectOf(NavigationProp).isRequired
   }
 
   constructor (props) {
@@ -55,7 +61,7 @@ class HomeScreen extends Component {
 
     const onResponse = newData => {
       if (newData.length === 0) {
-        if (this.state.data.length == 0) {
+        if (this.state.data.length === 0) {
           const ordination = findStrategyInformationByValue(this.state.ordinationStrategy).title
           const page = this.state.page
           return this.setState({
@@ -103,23 +109,23 @@ class HomeScreen extends Component {
         />
         {this.state.data.length > 0
           ? (
-          <PostList
-            data={this.state.data}
-            endOfResults={this.state.endOfResults}
-            loadMore={() => this.loadContent()}
-            navigation={this.props.navigation}
-            reload={() => this.reload()}
-          />
+            <PostList
+              data={this.state.data}
+              endOfResults={this.state.endOfResults}
+              loadMore={() => this.loadContent()}
+              navigation={this.props.navigation}
+              reload={() => this.reload()}
+            />
             )
           : (this.state.error
               ? (
-          <Error
-            message={this.state.error}
-            onRetry={() => this.reload()}
-          />
+              <Error
+                message={this.state.error}
+                onRetry={() => this.reload()}
+              />
                 )
               : (
-          <LoadingIndicator />
+              <LoadingIndicator />
                 ))}
       </View>
     )

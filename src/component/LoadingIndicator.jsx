@@ -1,5 +1,6 @@
 import { memo } from 'react'
 import { View, Text, ActivityIndicator, StyleSheet } from 'react-native'
+import PropTypes from 'prop-types'
 
 const FOOTER_SIZE = 36
 const NORMAL_SIZE = 56
@@ -14,6 +15,10 @@ const LoadingIndicator = ({ footer = false, message = 'Carregando...' }) => (
     <Text style={styles.message}>{message}</Text>
   </View>
 )
+LoadingIndicator.propTypes = {
+  footer: PropTypes.bool,
+  message: PropTypes.string
+}
 
 const styles = StyleSheet.create({
   container: {

@@ -1,5 +1,6 @@
 import { View, Text, Button, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
+import PropTypes from 'prop-types'
 
 const Error = ({ message, onRetry }) => (
   <View style={styles.container}>
@@ -8,6 +9,10 @@ const Error = ({ message, onRetry }) => (
     {onRetry ? <Button onPress={onRetry} title="Tentar novamente" /> : null}
   </View>
 )
+Error.propTypes = {
+  message: PropTypes.string.isRequired,
+  onRetry: PropTypes.func
+}
 
 const styles = StyleSheet.create({
   container: {

@@ -1,9 +1,11 @@
 import { memo } from 'react'
 import { FlatList } from 'react-native'
+import { NavigationProp } from '@react-navigation/native'
 import PostItem from './PostItem'
 import LoadingIndicator from '../../component/LoadingIndicator'
+import PropTypes from 'prop-types'
 
-function PostList ({ data, loadMore, reload, endOfResults, navigation }) {
+function PostList ({ data, navigation, loadMore, reload, endOfResults = false }) {
   const renderItem = ({ item }) => (
     <PostItem
       post={item}
@@ -22,6 +24,13 @@ function PostList ({ data, loadMore, reload, endOfResults, navigation }) {
       )}
     />
   )
+}
+PostList.propTypes = {
+  data: PropTypes.object.isRequired,
+  navigation: PropTypes.objectOf(NavigationProp).isRequired,
+  loadMore: PropTypes.func,
+  reload: PropTypes.func,
+  endOfResults: PropTypes.bool
 }
 
 export default memo(PostList)

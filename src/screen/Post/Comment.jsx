@@ -2,6 +2,7 @@ import { memo } from 'react'
 import { View, Text, StyleSheet, Pressable } from 'react-native'
 import Markdown from 'react-native-markdown-display'
 import striptags from 'striptags'
+import PropTypes from 'prop-types'
 
 const Comment = ({ item, onCommentClicked, onUsernameClicked }) => (
   <Pressable style={styles.container} onPress={onCommentClicked}>
@@ -11,9 +12,14 @@ const Comment = ({ item, onCommentClicked, onUsernameClicked }) => (
       </Pressable>
       <Text>{item.tabcoins} tabcoins | {item.children_deep_count} respostas</Text>
     </View>
-    <Markdown children={striptags(item.body, ['a'])} />
+    <Markdown>{striptags(item.body, ['a'])}</Markdown>
   </Pressable>
 )
+Comment.propTypes = {
+  item: PropTypes.object.isRequired,
+  onCommentClicked: PropTypes.func,
+  onUsernameClicked: PropTypes.func
+}
 
 const styles = StyleSheet.create({
   container: {

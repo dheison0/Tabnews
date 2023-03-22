@@ -3,12 +3,17 @@ import { ToastAndroid, View, Text } from 'react-native'
 import LoadingIndicator from '../../component/LoadingIndicator'
 import { errorHandler, TabNews } from '../../libs/tabnews'
 import Comment from './Comment'
+import PropTypes from 'prop-types'
 
 class CommentsContainer extends PureComponent {
   tabnews = new TabNews()
   state = {
     loading: true,
     comments: []
+  }
+
+  propTypes = {
+    post: PropTypes.object.isRequired
   }
 
   componentDidMount () {

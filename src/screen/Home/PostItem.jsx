@@ -1,5 +1,7 @@
 import { memo } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { NavigationProp } from '@react-navigation/native'
+import PropTypes from 'prop-types'
 
 const PostItem = ({ post, navigation }) => (
   <TouchableOpacity onPress={() => navigation.navigate('Post', { post })}>
@@ -13,6 +15,10 @@ const PostItem = ({ post, navigation }) => (
     </View>
   </TouchableOpacity>
 )
+PostItem.propTypes = {
+  post: PropTypes.object.isRequired,
+  navigation: PropTypes.objectOf(NavigationProp).isRequired
+}
 
 const styles = StyleSheet.create({
   container: {

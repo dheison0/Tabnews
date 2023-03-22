@@ -1,5 +1,6 @@
 import { PureComponent } from 'react'
 import { View, Text, ScrollView } from 'react-native'
+import { RouteProp } from '@react-navigation/native'
 import Error from '../../component/Error'
 import LoadingIndicator from '../../component/LoadingIndicator'
 import { errorHandler, TabNews } from '../../libs/tabnews'
@@ -7,6 +8,7 @@ import Markdown from 'react-native-markdown-display'
 import styles from './styles'
 import CommentsContainer from './CommentsContainer'
 import striptags from 'striptags'
+import PropTypes from 'prop-types'
 
 class PostScreen extends PureComponent {
   tabnews = new TabNews()
@@ -16,8 +18,8 @@ class PostScreen extends PureComponent {
     postComponent: null
   }
 
-  constructor (props) {
-    super(props)
+  propTypes = {
+    route: PropTypes.objectOf(RouteProp).isRequired
   }
 
   componentDidMount () {
@@ -41,7 +43,7 @@ class PostScreen extends PureComponent {
       postComponent: (
         <ScrollView>
           <Text style={styles.title}>{post.title}</Text>
-          <Markdown children={stripedContent} />
+          <Markdown>{stripedContent}</Markdown>
           <Text style={styles.comments}>Comentários:</Text>
           <CommentsContainer
             post={{ owner: post.owner_username, slug: post.slug }}
