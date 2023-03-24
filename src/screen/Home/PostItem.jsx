@@ -1,6 +1,5 @@
 import { memo } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import { NavigationProp } from '@react-navigation/native'
 import PropTypes from 'prop-types'
 
 const PostItem = ({ post, navigation }) => (
@@ -17,7 +16,7 @@ const PostItem = ({ post, navigation }) => (
 )
 PostItem.propTypes = {
   post: PropTypes.object.isRequired,
-  navigation: PropTypes.objectOf(NavigationProp).isRequired
+  navigation: PropTypes.object.isRequired
 }
 
 const styles = StyleSheet.create({

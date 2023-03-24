@@ -3,7 +3,6 @@ import { ToastAndroid, View } from 'react-native'
 import { findStrategyInformationByValue, errorHandler, TabNews } from '../../libs/tabnews'
 import { prepareData } from './utils'
 import { StrategyChooser, StrategyChooserHeaderButton } from './StrategyChooser'
-import { NavigationProp } from '@react-navigation/native'
 import LoadingIndicator from '../../component/LoadingIndicator'
 import PostList from './PostList'
 import Error from '../../component/Error'
@@ -19,10 +18,6 @@ class HomeScreen extends Component {
     error: null,
     strategyChooserVisible: false,
     ordinationStrategy: 'relevant'
-  }
-
-  propTypes = {
-    navigation: PropTypes.objectOf(NavigationProp).isRequired
   }
 
   constructor (props) {
@@ -130,6 +125,9 @@ class HomeScreen extends Component {
       </View>
     )
   }
+}
+HomeScreen.propTypes = {
+  navigation: PropTypes.object.isRequired
 }
 
 export default HomeScreen

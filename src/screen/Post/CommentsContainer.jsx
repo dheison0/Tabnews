@@ -12,10 +12,6 @@ class CommentsContainer extends PureComponent {
     comments: []
   }
 
-  propTypes = {
-    post: PropTypes.object.isRequired
-  }
-
   componentDidMount () {
     this.tabnews.getComments(this.props.post.owner, this.props.post.slug)
       .then(data => this.setState({ comments: data, loading: false }))
@@ -30,23 +26,26 @@ class CommentsContainer extends PureComponent {
       <View>
         {this.state.loading
           ? (
-          <LoadingIndicator
-            footer={true}
-            message="Carregando comentários..."
-          />
+            <LoadingIndicator
+              footer={true}
+              message="Carregando comentários..."
+            />
             )
           : this.state.comments.length > 0
             ? (
                 this.state.comments.map((item, index) => <Comment key={index} item={item} />)
               )
             : (
-          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Sem comentários ainda :)</Text>
-          </View>
+              <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <Text>Sem comentários ainda :)</Text>
+              </View>
               )}
       </View>
     )
   }
+}
+CommentsContainer.propTypes = {
+  post: PropTypes.object.isRequired
 }
 
 export default CommentsContainer

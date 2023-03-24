@@ -1,6 +1,5 @@
 import { PureComponent } from 'react'
 import { View, Text, ScrollView } from 'react-native'
-import { RouteProp } from '@react-navigation/native'
 import Error from '../../component/Error'
 import LoadingIndicator from '../../component/LoadingIndicator'
 import { errorHandler, TabNews } from '../../libs/tabnews'
@@ -16,10 +15,6 @@ class PostScreen extends PureComponent {
     loading: true,
     error: null,
     postComponent: null
-  }
-
-  propTypes = {
-    route: PropTypes.objectOf(RouteProp).isRequired
   }
 
   componentDidMount () {
@@ -69,6 +64,9 @@ class PostScreen extends PureComponent {
       </View>
     )
   }
+}
+PostScreen.propTypes = {
+  route: PropTypes.object.isRequired
 }
 
 export default PostScreen

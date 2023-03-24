@@ -1,6 +1,5 @@
 import { memo } from 'react'
 import { FlatList } from 'react-native'
-import { NavigationProp } from '@react-navigation/native'
 import PostItem from './PostItem'
 import LoadingIndicator from '../../component/LoadingIndicator'
 import PropTypes from 'prop-types'
@@ -27,7 +26,7 @@ function PostList ({ data, navigation, loadMore, reload, endOfResults = false })
 }
 PostList.propTypes = {
   data: PropTypes.object.isRequired,
-  navigation: PropTypes.objectOf(NavigationProp).isRequired,
+  navigation: PropTypes.object.isRequired,
   loadMore: PropTypes.func,
   reload: PropTypes.func,
   endOfResults: PropTypes.bool
