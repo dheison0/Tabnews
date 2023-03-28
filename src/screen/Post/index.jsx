@@ -8,6 +8,7 @@ import styles from './styles'
 import CommentsContainer from './CommentsContainer'
 import striptags from 'striptags'
 import PropTypes from 'prop-types'
+import { markdownFixer } from '../../libs/markdownFixer'
 
 class PostScreen extends PureComponent {
   tabnews = new TabNews()
@@ -33,13 +34,14 @@ class PostScreen extends PureComponent {
   }
 
   processMarkdown (post) {
-    const stripedContent = striptags(post.body, ['a'])
     this.setState({
       postComponent: (
         <ScrollView>
-          <Text style={styles.title}>{post.title}</Text>
-          <Markdown>{stripedContent}</Markdown>
-          <Text style={styles.comments}>Comentários:</Text>
+          <Text style={styles.main.title}>{post.title}</Text>
+          <Markdown style={styles.markdownRenderer}>
+            {markdownFixer(post.body)}
+          </Markdown>
+          <Text style={styles.main.commentsTitle}>Comentários:</Text>
           <CommentsContainer
             post={{ owner: post.owner_username, slug: post.slug }}
           />
@@ -51,14 +53,14 @@ class PostScreen extends PureComponent {
 
   render () {
     return (
-      <View style={styles.root}>
+      <View style={styles.main.body}>
         {this.state.postComponent ?? (
           this.state.error
             ? (
-            <Error message={this.state.error} onRetry={() => this.reload()} />
+              <Error message={this.state.error} onRetry={() => this.reload()} />
               )
             : (
-            <LoadingIndicator />
+              <LoadingIndicator />
               )
         )}
       </View>

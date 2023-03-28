@@ -25,7 +25,7 @@ function PostList ({ data, navigation, loadMore, reload, endOfResults = false })
   )
 }
 PostList.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.array.isRequired,
   navigation: PropTypes.object.isRequired,
   loadMore: PropTypes.func,
   reload: PropTypes.func,

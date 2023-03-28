@@ -1,15 +1,18 @@
 import { memo } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
+import { theme } from '../../colors'
+
+const textStyle = (textAlign) => ({ flex: 1, color: theme.colors.text, textAlign })
 
 const PostItem = ({ post, navigation }) => (
   <TouchableOpacity onPress={() => navigation.navigate('Post', { post })}>
     <View style={styles.container}>
       <Text style={styles.title}>{post.title}</Text>
       <View style={styles.information}>
-        <Text style={{ flex: 1, textAlign: 'left' }}>{post.owner}</Text>
-        <Text style={{ flex: 1, textAlign: 'center' }}>{post.tabcoins} tabcoins</Text>
-        <Text style={{ flex: 1, textAlign: 'right' }}>{post.time}</Text>
+        <Text style={textStyle('left')}>{post.owner}</Text>
+        <Text style={textStyle('center')}>{post.tabcoins} tabcoins</Text>
+        <Text style={textStyle('right')}>{post.time}</Text>
       </View>
     </View>
   </TouchableOpacity>
@@ -25,7 +28,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontWeight: '500'
+    fontWeight: '500',
+    color: theme.colors.text
   },
   information: {
     flex: 1,

@@ -37,6 +37,7 @@ export class TabNews {
 }
 
 export function errorHandler (err) {
+  console.error('errorHandler', err)
   switch (err.code) {
     case AxiosError.ERR_NETWORK:
       return 'Não foi possível alcançar a API!'

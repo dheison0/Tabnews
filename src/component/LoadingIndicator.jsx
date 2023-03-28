@@ -1,6 +1,7 @@
 import { memo } from 'react'
 import { View, Text, ActivityIndicator, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
+import { theme } from '../colors'
 
 const FOOTER_SIZE = 36
 const NORMAL_SIZE = 56
@@ -10,7 +11,7 @@ const LoadingIndicator = ({ footer = false, message = 'Carregando...' }) => (
     <ActivityIndicator
       style={styles.indicator}
       size={footer ? FOOTER_SIZE : NORMAL_SIZE}
-      color="black"
+      color={theme.colors.primary}
     />
     <Text style={styles.message}>{message}</Text>
   </View>
@@ -34,7 +35,8 @@ const styles = StyleSheet.create({
     margin: 8
   },
   message: {
-    fontSize: 16
+    fontSize: 16,
+    color: theme.colors.text
   }
 })
 

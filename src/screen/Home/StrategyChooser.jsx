@@ -3,10 +3,11 @@ import { homepageStrategies } from '../../libs/tabnews'
 import { Modal, Text, View, Pressable, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import PropTypes from 'prop-types'
+import { theme } from '../../colors'
 
 export const StrategyChooserHeaderButton = ({ onPress }) => (
   <Pressable onPress={onPress} style={[styles.centeredView, styles.headerButton]}>
-    <Ionicons size={20} name='md-filter' />
+    <Ionicons size={20} name='md-filter' color={theme.colors.primary} />
   </Pressable>
 )
 StrategyChooserHeaderButton.propTypes = {

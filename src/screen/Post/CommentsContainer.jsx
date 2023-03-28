@@ -4,6 +4,13 @@ import LoadingIndicator from '../../component/LoadingIndicator'
 import { errorHandler, TabNews } from '../../libs/tabnews'
 import Comment from './Comment'
 import PropTypes from 'prop-types'
+import { theme } from '../../colors'
+
+const NoComments = () => (
+  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Text style={{ color: theme.colors.text }}>Sem comentários ainda :)</Text>
+  </View>
+)
 
 class CommentsContainer extends PureComponent {
   tabnews = new TabNews()
@@ -32,14 +39,8 @@ class CommentsContainer extends PureComponent {
             />
             )
           : this.state.comments.length > 0
-            ? (
-                this.state.comments.map((item, index) => <Comment key={index} item={item} />)
-              )
-            : (
-              <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Text>Sem comentários ainda :)</Text>
-              </View>
-              )}
+            ? this.state.comments.map((item, index) => <Comment key={index} item={item} />)
+            : (<NoComments />)}
       </View>
     )
   }
