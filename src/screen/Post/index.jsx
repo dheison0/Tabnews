@@ -1,14 +1,13 @@
 import { PureComponent } from 'react'
 import { View, Text, ScrollView } from 'react-native'
+import { markdownFixer } from '../../libs/markdownFixer'
+import { errorHandler, TabNews } from '../../libs/tabnews'
 import Error from '../../component/Error'
 import LoadingIndicator from '../../component/LoadingIndicator'
-import { errorHandler, TabNews } from '../../libs/tabnews'
 import Markdown from 'react-native-markdown-display'
-import styles from './styles'
 import CommentsContainer from './CommentsContainer'
-import striptags from 'striptags'
 import PropTypes from 'prop-types'
-import { markdownFixer } from '../../libs/markdownFixer'
+import styles from './styles'
 
 class PostScreen extends PureComponent {
   tabnews = new TabNews()

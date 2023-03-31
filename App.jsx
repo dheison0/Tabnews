@@ -3,10 +3,10 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Ionicons } from '@expo/vector-icons'
+import { theme, statusBarScheme } from './src/colors'
 import HomeScreen from './src/screen/Home'
 import PostScreen from './src/screen/Post'
-import { theme, statusBarScheme } from './src/colors'
-import * as NavigationBar from 'expo-navigation-bar';
+import * as NavigationBar from 'expo-navigation-bar'
 
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()

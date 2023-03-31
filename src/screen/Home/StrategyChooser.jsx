@@ -1,12 +1,13 @@
 import { memo } from 'react'
 import { homepageStrategies } from '../../libs/tabnews'
-import { Modal, Text, View, Pressable, StyleSheet } from 'react-native'
+import { Modal, Text, View, Pressable } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import PropTypes from 'prop-types'
 import { theme } from '../../colors'
+import styles from './styles'
+import PropTypes from 'prop-types'
 
 export const StrategyChooserHeaderButton = ({ onPress }) => (
-  <Pressable onPress={onPress} style={[styles.centeredView, styles.headerButton]}>
+  <Pressable onPress={onPress} style={[styles.strategyChooser.centeredView, styles.strategyChooser.headerButton]}>
     <Ionicons size={20} name='md-filter' color={theme.colors.primary} />
   </Pressable>
 )
@@ -21,25 +22,25 @@ const RawStrategyChooser = ({ visible, onRequestClose, onChoose }) => (
     visible={visible}
     onRequestClose={onRequestClose}
   >
-    <View style={styles.centeredView}>
-      <View style={styles.modalView}>
-        <Text style={styles.title}>Ordenar por:</Text>
-        <View style={styles.optionsBox}>
+    <View style={styles.strategyChooser.centeredView}>
+      <View style={styles.strategyChooser.modalView}>
+        <Text style={styles.strategyChooser.title}>Ordenar por:</Text>
+        <View style={styles.strategyChooser.optionsBox}>
           {homepageStrategies.map((strategy, index) => (
             <Pressable
               key={index}
-              style={[styles.button, styles.optionButton]}
+              style={[styles.strategyChooser.button, styles.strategyChooser.optionButton]}
               onPress={() => onChoose(strategy.value)}
             >
-              <Text style={styles.buttonText}>{strategy.title}</Text>
+              <Text style={styles.strategyChooser.buttonText}>{strategy.title}</Text>
             </Pressable>
           ))}
         </View>
         <Pressable
-          style={[styles.button, styles.cancelButton]}
+          style={[styles.strategyChooser.button, styles.strategyChooser.cancelButton]}
           onPress={onRequestClose}
         >
-          <Text style={styles.buttonText}>Cancelar</Text>
+          <Text style={styles.strategyChooser.buttonText}>Cancelar</Text>
         </Pressable>
       </View>
     </View>
@@ -51,45 +52,3 @@ RawStrategyChooser.propTypes = {
   onChoose: PropTypes.func
 }
 export const StrategyChooser = memo(RawStrategyChooser)
-
-const styles = StyleSheet.create({
-  headerButton: {
-    margin: 8
-  },
-  centeredView: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  modalView: {
-    backgroundColor: 'white',
-    borderRadius: 15,
-    padding: 20,
-    alignItems: 'center',
-    elevation: 5
-  },
-  title: {
-    fontSize: 18,
-    marginBottom: 8
-  },
-  optionsBox: {
-    marginHorizontal: 25
-  },
-  button: {
-    margin: 2,
-    borderRadius: 4,
-    alignItems: 'center',
-    elevation: 4
-  },
-  buttonText: {
-    color: '#fff',
-    marginVertical: 10,
-    marginHorizontal: 20
-  },
-  optionButton: {
-    backgroundColor: '#99e'
-  },
-  cancelButton: {
-    backgroundColor: '#c52'
-  }
-})

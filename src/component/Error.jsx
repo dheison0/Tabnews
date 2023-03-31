@@ -1,7 +1,7 @@
 import { View, Text, Button, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import PropTypes from 'prop-types'
 import { theme } from '../colors'
+import PropTypes from 'prop-types'
 
 const Error = ({ message, onRetry }) => (
   <View style={styles.container}>

@@ -23,7 +23,7 @@ describe('getContents', () => {
   test('Pagination', async () => {
     const firstResponse = await tabnews.getContents(1, 'relevant')
     const secondResponse = await tabnews.getContents(2, 'relevant')
-    expect(firstResponse != secondResponse).toBe(true)
+    expect(firstResponse !== secondResponse).toBe(true)
   })
 })
 

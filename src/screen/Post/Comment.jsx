@@ -1,10 +1,9 @@
 import { memo } from 'react'
 import { View, Text, Pressable } from 'react-native'
+import { markdownFixer } from '../../libs/markdownFixer'
 import Markdown from 'react-native-markdown-display'
-import striptags from 'striptags'
 import PropTypes from 'prop-types'
 import styles from './styles'
-import { markdownFixer } from '../../libs/markdownFixer'
 
 const Comment = ({ item, onCommentClicked, onUsernameClicked }) => (
   <Pressable style={styles.comment.container} onPress={onCommentClicked}>

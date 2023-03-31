@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { View, Text, ActivityIndicator, StyleSheet } from 'react-native'
-import PropTypes from 'prop-types'
 import { theme } from '../colors'
+import PropTypes from 'prop-types'
 
 const FOOTER_SIZE = 36
 const NORMAL_SIZE = 56

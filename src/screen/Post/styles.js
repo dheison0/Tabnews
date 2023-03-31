@@ -38,10 +38,23 @@ const styles = StyleSheet.create({
       color: theme.colors.primary
     }
   },
+  noComments: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   markdownRenderer: {
     body: {
       color: theme.colors.text,
+      backgroundColor: theme.colors.background,
       padding: 6
+    },
+    code_inline: {
+      backgroundColor: theme.colors.notification
+    },
+    fence: {
+      borderColor: theme.colors.border,
+      backgroundColor: theme.colors.border
     }
   }
 })

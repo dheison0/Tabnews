@@ -1,13 +1,14 @@
 import { PureComponent } from 'react'
 import { ToastAndroid, View, Text } from 'react-native'
-import LoadingIndicator from '../../component/LoadingIndicator'
 import { errorHandler, TabNews } from '../../libs/tabnews'
+import { theme } from '../../colors'
+import styles from './styles'
+import LoadingIndicator from '../../component/LoadingIndicator'
 import Comment from './Comment'
 import PropTypes from 'prop-types'
-import { theme } from '../../colors'
 
 const NoComments = () => (
-  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+  <View style={styles.noComments}>
     <Text style={{ color: theme.colors.text }}>Sem comentários ainda :)</Text>
   </View>
 )
