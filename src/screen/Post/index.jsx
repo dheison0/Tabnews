@@ -8,6 +8,7 @@ import Markdown from 'react-native-markdown-display'
 import CommentsContainer from './CommentsContainer'
 import PropTypes from 'prop-types'
 import styles from './styles'
+import SaveButton from './SaveButton'
 
 class PostScreen extends PureComponent {
   tabnews = new TabNews()
@@ -15,6 +16,13 @@ class PostScreen extends PureComponent {
     loading: true,
     error: null,
     postComponent: null
+  }
+
+  constructor (props) {
+    super(props)
+    this.props.navigation.setOptions({
+      headerRight: () => <SaveButton post={this.props.route.params.post} />
+    })
   }
 
   componentDidMount () {
@@ -67,6 +75,7 @@ class PostScreen extends PureComponent {
   }
 }
 PostScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
   route: PropTypes.object.isRequired
 }
 

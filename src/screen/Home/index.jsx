@@ -24,7 +24,6 @@ class HomeScreen extends Component {
     super(props)
     this.state = { ...this.defaultState }
     this.props.navigation.setOptions({
-      title: 'Postagens',
       headerRight: () => (
         <StrategyChooserHeaderButton
           onPress={() => this.toggleStrategyChooser()}

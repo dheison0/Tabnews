@@ -6,12 +6,14 @@ import { Ionicons } from '@expo/vector-icons'
 import { theme, statusBarScheme } from './src/colors'
 import HomeScreen from './src/screen/Home'
 import PostScreen from './src/screen/Post'
+import SavedScreen from './src/screen/Saved'
 import * as NavigationBar from 'expo-navigation-bar'
 
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
 const icons = {
   Home: ['md-home', 'md-home-outline'],
+  Saved: ['md-bookmark', 'md-bookmark-outline'],
   bug: ['md-bug', 'md-bug-outline']
 }
 
@@ -21,7 +23,8 @@ const TabNavigator = () => (
       tabBarIcon: ({ focused }) => chooseTabBarIcon(route, focused),
       tabBarShowLabel: false
     })}>
-    <Tab.Screen name="Home" options={{ title: 'Inicio' }} component={HomeScreen} />
+    <Tab.Screen name="Home" options={{ title: 'Postagens' }} component={HomeScreen} />
+    <Tab.Screen name="Saved" options={{ title: 'Salvos' }} component={SavedScreen} />
   </Tab.Navigator>
 )
 
