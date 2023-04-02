@@ -30,9 +30,10 @@ const SavedScreen = ({ navigation }) => {
     }))
   const loading = () => <LoadingIndicator />
   const renderError = () => <Error message={state.error} />
-  const renderItems = () => state.data.map((v, i) => (
-    <Item key={i} post={v} navigation={navigation} />
-  ))
+  const renderItems = () => state.data.map((post, index) => {
+    if (!post) return undefined
+    return (<Item key={index} post={post} navigation={navigation} />)
+  })
   return (
     <View style={styles.root}>
       {state.loading
