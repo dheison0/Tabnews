@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { View, Text, Button, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { theme } from '../colors'
@@ -30,4 +31,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Error
+export default memo(Error)

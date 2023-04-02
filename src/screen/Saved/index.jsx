@@ -5,6 +5,7 @@ import LoadingIndicator from '../../component/LoadingIndicator'
 import Item from './Item'
 import styles from './styles'
 import Error from '../../component/Error'
+import PropTypes from 'prop-types'
 
 const NoItems = () => (
   <View style={styles.noItems.container}>
@@ -27,21 +28,26 @@ const SavedScreen = ({ navigation }) => {
       loading: false,
       error: 'Falha ao carregar items salvos!'
     }))
+  const loading = () => <LoadingIndicator />
+  const renderError = () => <Error message={state.error} />
+  const renderItems = () => state.data.map((v, i) => (
+    <Item key={i} post={v} navigation={navigation} />
+  ))
   return (
     <View style={styles.root}>
       {state.loading
-        ? <LoadingIndicator />
-        : (state.error
-            ? (<Error message={state.error} />)
-            : (state.data.length > 0
-                ? (
-                    state.data.map((v, i) => (<Item key={i} post={v} navigation={navigation} />))
-                  )
-                : <NoItems />
-              )
-          )}
+        ? loading()
+        : state.error
+          ? renderError()
+          : state.data.length > 0
+            ? renderItems()
+            : NoItems()
+      }
     </View>
   )
+}
+SavedScreen.propTypes = {
+  navigation: PropTypes.object.isRequired
 }
 
 export default SavedScreen

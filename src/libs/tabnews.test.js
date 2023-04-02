@@ -1,9 +1,20 @@
 import { AxiosError } from 'axios'
 import { TabNews } from './tabnews'
 
-describe('getContents', () => {
-  const tabnews = new TabNews()
+const tabnews = new TabNews()
+class NoErrorThrownError extends Error {}
+const getError = async (call) => {
+  try {
+    await call()
+    throw new NoErrorThrownError()
+  } catch (err) {
+    return err
+  }
+}
 
+jest.setTimeout(10000)
+
+describe('getContents', () => {
   test('With valid strategy', async () => {
     const posts = await tabnews.getContents(1, 'relevant')
     expect(posts instanceof Array).toBe(true)
@@ -13,11 +24,9 @@ describe('getContents', () => {
   })
 
   test('With invalid strategy', async () => {
-    try {
-      await tabnews.getContents(1, 'osnofnos')
-    } catch (err) {
-      expect(err.code).toBe(AxiosError.ERR_BAD_REQUEST)
-    }
+    const error = await getError(async () => await tabnews.getContents(1, 'osnofnos'))
+    expect(error).not.toBe(NoErrorThrownError)
+    expect(error).toHaveProperty('code', AxiosError.ERR_BAD_REQUEST)
   })
 
   test('Pagination', async () => {
@@ -28,18 +37,32 @@ describe('getContents', () => {
 })
 
 describe('getPost', () => {
-  const tabnews = new TabNews()
-
-  test('Valid', async () => {
+  test('Existent', async () => {
     const post = await tabnews.getPost('dheisom', 'instalacao-do-docker-no-alpine')
     expect(post instanceof Object).toBe(true)
   })
 
-  test('Invalid', async () => {
-    try {
-      await tabnews.getPost('suhfsidfhdu', 'ajdosjdiasjdoqqwonqw')
-    } catch (err) {
-      expect(err.code).toBe(AxiosError.ERR_BAD_REQUEST)
-    }
+  test('Not existent', async () => {
+    const error = await getError(async () => await tabnews.getPost('abc', 'b'))
+    expect(error).not.toBe(NoErrorThrownError)
+    expect(error).toHaveProperty('code', AxiosError.ERR_BAD_REQUEST)
+  })
+})
+
+describe('getComments', () => {
+  test('Post with comments', async () => {
+    const comments = await tabnews.getComments('dheisom', 'decoradores-em-python')
+    expect(comments).not.toBe([])
+  })
+
+  test('Post without comments', async () => {
+    const comments = await tabnews.getComments('tiagolofi', '654b6026-07c4-4bd1-af24-298f2ebc9802')
+    expect(comments.length).toBe(0)
+  })
+
+  test('Post not existent', async () => {
+    const error = await getError(async () => await tabnews.getComments('abc', 'b'))
+    expect(error).not.toBe(NoErrorThrownError)
+    expect(error).toHaveProperty('code', AxiosError.ERR_BAD_REQUEST)
   })
 })

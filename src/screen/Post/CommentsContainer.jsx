@@ -30,18 +30,16 @@ class CommentsContainer extends PureComponent {
   }
 
   render () {
+    const loading = () => <LoadingIndicator message="Carregando comentários..." footer={true} />
+    const renderItems = () => this.state.comments.map((item, index) => <Comment key={index} item={item} />)
     return (
       <View>
         {this.state.loading
-          ? (
-            <LoadingIndicator
-              footer={true}
-              message="Carregando comentários..."
-            />
-            )
+          ? loading()
           : this.state.comments.length > 0
-            ? this.state.comments.map((item, index) => <Comment key={index} item={item} />)
-            : (<NoComments />)}
+            ? renderItems()
+            : NoComments()
+        }
       </View>
     )
   }

@@ -4,7 +4,7 @@ import PostItem from './PostItem'
 import LoadingIndicator from '../../component/LoadingIndicator'
 import PropTypes from 'prop-types'
 
-function PostList ({ data, navigation, loadMore, reload, endOfResults = false }) {
+const PostList = ({ data, navigation, loadMore, reload, endOfResults = false }) => {
   const renderItem = ({ item }) => (
     <PostItem
       post={item}

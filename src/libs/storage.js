@@ -14,9 +14,10 @@ export const addBookmark = async (post) => {
 }
 
 export const getBookmarks = async () => {
-  const bookmarksKeys = (await AsyncStorage.getAllKeys()).filter((k) => k.startsWith('@bookmark'))
-  const bookmarks = bookmarksKeys.map(async (k) => {
-    const item = await AsyncStorage.getItem(k)
+  const allKeys = await AsyncStorage.getAllKeys()
+  const bookmarksKeys = allKeys.filter((key) => key.startsWith('@bookmark'))
+  const bookmarks = bookmarksKeys.map(async (key) => {
+    const item = await AsyncStorage.getItem(key)
     return JSON.parse(item)
   })
   const result = await Promise.all(bookmarks)

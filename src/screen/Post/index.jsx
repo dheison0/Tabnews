@@ -59,16 +59,14 @@ class PostScreen extends PureComponent {
   }
 
   render () {
+    const errorRender = () => <Error message={this.state.error} onRetry={() => this.reload()} />
+    const loading = () => <LoadingIndicator />
     return (
       <View style={styles.main.body}>
         {this.state.postComponent ?? (
           this.state.error
-            ? (
-              <Error message={this.state.error} onRetry={() => this.reload()} />
-              )
-            : (
-              <LoadingIndicator />
-              )
+            ? errorRender()
+            : loading()
         )}
       </View>
     )

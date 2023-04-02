@@ -51,4 +51,5 @@ RawStrategyChooser.propTypes = {
   onRequestClose: PropTypes.func.isRequired,
   onChoose: PropTypes.func
 }
+
 export const StrategyChooser = memo(RawStrategyChooser)

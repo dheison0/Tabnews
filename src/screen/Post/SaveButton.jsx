@@ -1,4 +1,4 @@
-import { memo, useState } from 'react'
+import { useState } from 'react'
 import { Pressable, ToastAndroid } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { theme } from '../../colors'

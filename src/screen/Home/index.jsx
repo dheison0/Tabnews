@@ -94,6 +94,17 @@ class HomeScreen extends Component {
     const onStrategyChoose = (value) => {
       this.setState({ ordinationStrategy: value }, this.reload)
     }
+    const renderItems = () => (
+      <PostList
+        data={this.state.data}
+        endOfResults={this.state.endOfResults}
+        loadMore={() => this.loadContent()}
+        navigation={this.props.navigation}
+        reload={() => this.reload()}
+      />
+    )
+    const errorRender = () => <Error message={this.state.error} onRetry={() => this.reload()} />
+    const loading = () => <LoadingIndicator />
     return (
       <View style={{ flex: 1 }}>
         <StrategyChooser
@@ -102,25 +113,11 @@ class HomeScreen extends Component {
           onChoose={onStrategyChoose}
         />
         {this.state.data.length > 0
-          ? (
-            <PostList
-              data={this.state.data}
-              endOfResults={this.state.endOfResults}
-              loadMore={() => this.loadContent()}
-              navigation={this.props.navigation}
-              reload={() => this.reload()}
-            />
-            )
-          : (this.state.error
-              ? (
-              <Error
-                message={this.state.error}
-                onRetry={() => this.reload()}
-              />
-                )
-              : (
-              <LoadingIndicator />
-                ))}
+          ? renderItems()
+          : this.state.error
+            ? errorRender()
+            : loading()
+        }
       </View>
     )
   }
