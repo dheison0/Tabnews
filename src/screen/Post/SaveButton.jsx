@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { theme } from '../../colors'
 import { addBookmark, isBookmarked, removeBookmark } from '../../libs/storage'
 import PropTypes from 'prop-types'
+import styles from './styles'
 
 const SaveButton = ({ post }) => {
   const [marked, setMarked] = useState(false)
@@ -25,10 +26,7 @@ const SaveButton = ({ post }) => {
   }
   check()
   return (
-    <Pressable
-      onPress={onPress}
-      style={{ paddingRight: 8, alignItems: 'center' }}
-    >
+    <Pressable style={styles.main.headerItem} onPress={onPress}>
       <Ionicons
         name={marked ? 'md-bookmark' : 'md-bookmark-outline'}
         color={theme.colors.primary}

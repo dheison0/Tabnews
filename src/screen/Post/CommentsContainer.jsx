@@ -31,7 +31,18 @@ class CommentsContainer extends PureComponent {
 
   render () {
     const loading = () => <LoadingIndicator message="Carregando comentários..." footer={true} />
-    const renderItems = () => this.state.comments.map((item, index) => <Comment key={index} item={item} />)
+    const renderItems = () => this.state.comments.map((item, index) => (
+      <Comment
+        key={index}
+        item={item}
+        onPress={() => this.props.navigation.push('Post', {
+          post: {
+            owner: item.owner_username,
+            slug: item.slug
+          }
+        })}
+      />
+    ))
     return (
       <View>
         {this.state.loading
@@ -45,7 +56,8 @@ class CommentsContainer extends PureComponent {
   }
 }
 CommentsContainer.propTypes = {
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
+  navigation: PropTypes.object.isRequired
 }
 
 export default CommentsContainer

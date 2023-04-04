@@ -9,6 +9,7 @@ import CommentsContainer from './CommentsContainer'
 import PropTypes from 'prop-types'
 import styles from './styles'
 import SaveButton from './SaveButton'
+import ShareButton from './ShareButton'
 
 class PostScreen extends PureComponent {
   tabnews = new TabNews()
@@ -21,7 +22,12 @@ class PostScreen extends PureComponent {
   constructor (props) {
     super(props)
     this.props.navigation.setOptions({
-      headerRight: () => <SaveButton post={this.props.route.params.post} />
+      headerRight: () => (
+        <View style={styles.main.header}>
+          <SaveButton post={this.props.route.params.post} />
+          <ShareButton post={this.props.route.params.post} />
+        </View>
+      )
     })
   }
 
@@ -44,12 +50,13 @@ class PostScreen extends PureComponent {
     this.setState({
       postComponent: (
         <ScrollView>
-          <Text style={styles.main.title}>{post.title}</Text>
+          {post.title ? (<Text style={styles.main.title}>{post.title}</Text>) : null}
           <Markdown style={styles.markdownRenderer}>
             {markdownFixer(post.body)}
           </Markdown>
           <Text style={styles.main.commentsTitle}>Comentários:</Text>
           <CommentsContainer
+            navigation={this.props.navigation}
             post={{ owner: post.owner_username, slug: post.slug }}
           />
         </ScrollView>

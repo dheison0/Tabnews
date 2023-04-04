@@ -7,6 +7,15 @@ const styles = StyleSheet.create({
       flex: 1,
       padding: 8
     },
+    header: {
+      flex: 1,
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginRight: 10
+    },
+    headerItem: {
+      margin: 3
+    },
     title: {
       fontSize: 22,
       fontWeight: 'bold',

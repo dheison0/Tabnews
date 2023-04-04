@@ -5,10 +5,10 @@ import Markdown from 'react-native-markdown-display'
 import PropTypes from 'prop-types'
 import styles from './styles'
 
-const Comment = ({ item, onCommentClicked, onUsernameClicked }) => (
-  <Pressable style={styles.comment.container} onPress={onCommentClicked}>
+const Comment = ({ item, onPress, onUsernamePress }) => (
+  <Pressable style={styles.comment.container} onPress={onPress}>
     <View style={styles.comment.header}>
-      <Pressable onPress={onUsernameClicked}>
+      <Pressable onPress={onUsernamePress}>
         <Text style={styles.comment.headerText}>{item.owner_username}</Text>
       </Pressable>
       <Text style={styles.comment.headerText}>
@@ -20,8 +20,8 @@ const Comment = ({ item, onCommentClicked, onUsernameClicked }) => (
 )
 Comment.propTypes = {
   item: PropTypes.object.isRequired,
-  onCommentClicked: PropTypes.func,
-  onUsernameClicked: PropTypes.func
+  onPress: PropTypes.func,
+  onUsernamePress: PropTypes.func
 }
 
 export default memo(Comment)
