@@ -13,10 +13,10 @@ JavaScript com React Native e estou planejando colocar algumas funções bem leg
     - [X] Componente de renderização do item na lista
     - [X] Modal para troca de estratégia
     - [X] Criar Componente para mostrar erros no carregamento
-  - [ ] Criar a página da postagem
-    - [ ] Adicionar o markdown formatado
-    - [ ] Criar componente de comentário
-  - [ ] Criar tela de comentários
+  - [X] Criar a página da postagem
+    - [X] Adicionar o markdown formatado
+    - [X] Criar componente de comentário
+  - ~~[ ] Criar tela de comentários~~(substituído pela tela de postagem)
   - [ ] Criar tela de configurações
     - [ ] Configurar o tema padrão
     - [ ] Definir a estratégia padrão
