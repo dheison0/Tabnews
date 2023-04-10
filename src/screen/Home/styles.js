@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center'
     },
     modalView: {
-      backgroundColor: 'white',
+      backgroundColor: theme.colors.border,
       borderRadius: 15,
       padding: 20,
       alignItems: 'center',
@@ -35,7 +35,8 @@ const styles = StyleSheet.create({
     },
     title: {
       fontSize: 18,
-      marginBottom: 8
+      marginBottom: 8,
+      color: theme.colors.text
     },
     optionsBox: {
       marginHorizontal: 25
@@ -47,15 +48,15 @@ const styles = StyleSheet.create({
       elevation: 4
     },
     buttonText: {
-      color: '#fff',
+      color: theme.colors.text,
       marginVertical: 10,
       marginHorizontal: 20
     },
     optionButton: {
-      backgroundColor: '#99e'
+      backgroundColor: theme.colors.card
     },
     cancelButton: {
-      backgroundColor: '#c52'
+      backgroundColor: theme.colors.notification
     }
   }
 })

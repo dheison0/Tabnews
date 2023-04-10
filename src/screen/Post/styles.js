@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     commentsTitle: {
       paddingTop: 4,
       borderTopWidth: 2,
-      borderTopColor: '#444',
+      borderTopColor: theme.colors.border,
       marginVertical: 8,
       fontSize: 18,
       color: theme.colors.text

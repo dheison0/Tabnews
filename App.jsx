@@ -8,13 +8,21 @@ import HomeScreen from './src/screen/Home'
 import PostScreen from './src/screen/Post'
 import SavedScreen from './src/screen/Saved'
 import * as NavigationBar from 'expo-navigation-bar'
+import script from './src/script.json'
 
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
+
+const mdIcon = (name) => ({ in: `md-${name}`, out: `md-${name}-outline` })
 const icons = {
-  Home: ['md-home', 'md-home-outline'],
-  Saved: ['md-bookmark', 'md-bookmark-outline'],
-  bug: ['md-bug', 'md-bug-outline']
+  Home: mdIcon('home'),
+  Saved: mdIcon('bookmark'),
+  bug: mdIcon('bug')
+}
+function chooseTabBarIcon (route, focused) {
+  const screenIcons = icons[route.name]
+  const icon = screenIcons[focused ? 'in' : 'out']
+  return (<Ionicons name={icon} size={30} color={theme.colors.primary} />)
 }
 
 const TabNavigator = () => (
@@ -23,26 +31,36 @@ const TabNavigator = () => (
       tabBarIcon: ({ focused }) => chooseTabBarIcon(route, focused),
       tabBarShowLabel: false
     })}>
-    <Tab.Screen name="Home" options={{ title: 'Postagens' }} component={HomeScreen} />
-    <Tab.Screen name="Saved" options={{ title: 'Salvos' }} component={SavedScreen} />
+    <Tab.Screen
+      name="Home"
+      options={{ title: script.screenTitles.home }}
+      component={HomeScreen}
+    />
+    <Tab.Screen
+      name="Saved"
+      options={{ title: script.screenTitles.saved }}
+      component={SavedScreen}
+    />
   </Tab.Navigator>
 )
 
 const App = () => (
   <NavigationContainer theme={theme}>
     <Stack.Navigator>
-      <Stack.Screen name="Main" options={{ headerShown: false }} component={TabNavigator} />
-      <Stack.Screen name="Post" options={{ title: 'Postagem' }} component={PostScreen} />
+      <Stack.Screen
+        name="Main"
+        options={{ headerShown: false }}
+        component={TabNavigator}
+      />
+      <Stack.Screen
+        name="Post"
+        options={{ title: script.screenTitles.post }}
+        component={PostScreen}
+      />
     </Stack.Navigator>
     <StatusBar style={statusBarScheme} />
   </NavigationContainer>
 )
-
-function chooseTabBarIcon (route, focused) {
-  const iconPair = icons[route.name] ?? icons.bug
-  const icon = focused ? iconPair[0] : iconPair[1]
-  return (<Ionicons name={icon} size={30} color={theme.colors.primary} />)
-}
 
 NavigationBar.setBackgroundColorAsync(theme.colors.background)
 NavigationBar.setButtonStyleAsync(statusBarScheme)
