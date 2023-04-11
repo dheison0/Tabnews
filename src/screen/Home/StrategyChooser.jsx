@@ -22,8 +22,8 @@ const RawStrategyChooser = ({ visible, onRequestClose, onChoose }) => (
     visible={visible}
     onRequestClose={onRequestClose}
   >
-    <View style={styles.strategyChooser.centeredView}>
-      <View style={styles.strategyChooser.modalView}>
+    <Pressable style={styles.strategyChooser.centeredView} onPress={onRequestClose}>
+      <Pressable style={styles.strategyChooser.modalView}>
         <Text style={styles.strategyChooser.title}>Ordenar por:</Text>
         <View style={styles.strategyChooser.optionsBox}>
           {homepageStrategies.map((strategy, index) => (
@@ -42,8 +42,8 @@ const RawStrategyChooser = ({ visible, onRequestClose, onChoose }) => (
         >
           <Text style={styles.strategyChooser.buttonText}>Cancelar</Text>
         </Pressable>
-      </View>
-    </View>
+      </Pressable>
+    </Pressable>
   </Modal>
 )
 RawStrategyChooser.propTypes = {

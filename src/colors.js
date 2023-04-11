@@ -9,6 +9,12 @@ const dark = {
     text: '#f8f8f2',
     border: '#44475a',
     notification: '#ff5555'
+  },
+  custom: {
+    strategyChooser: {
+      background: '#6272a4',
+      buttonText: '#FFF'
+    }
   }
 }
 
@@ -21,6 +27,12 @@ const light = {
     text: 'rgb(28, 28, 30)',
     border: 'rgb(216, 216, 216)',
     notification: 'rgb(255, 59, 48)'
+  },
+  custom: {
+    strategyChooser: {
+      background: '#FFF',
+      buttonText: '#224'
+    }
   }
 }
 

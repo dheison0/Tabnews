@@ -27,11 +27,11 @@ const styles = StyleSheet.create({
       justifyContent: 'center'
     },
     modalView: {
-      backgroundColor: theme.colors.border,
+      backgroundColor: theme.custom.strategyChooser.background,
       borderRadius: 15,
       padding: 20,
       alignItems: 'center',
-      elevation: 5
+      elevation: 8
     },
     title: {
       fontSize: 18,
@@ -45,15 +45,15 @@ const styles = StyleSheet.create({
       margin: 2,
       borderRadius: 4,
       alignItems: 'center',
-      elevation: 4
+      elevation: 5
     },
     buttonText: {
-      color: theme.colors.text,
+      color: theme.custom.strategyChooser.buttonText,
       marginVertical: 10,
       marginHorizontal: 20
     },
     optionButton: {
-      backgroundColor: theme.colors.card
+      backgroundColor: theme.colors.border
     },
     cancelButton: {
       backgroundColor: theme.colors.notification
