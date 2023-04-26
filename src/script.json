@@ -2,6 +2,7 @@
   "screenTitles": {
     "home": "Postagens",
     "post": "Postagem",
-    "saved": "Salvos"
+    "saved": "Salvos",
+    "user": "Usuário"
   }
 }

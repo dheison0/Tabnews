@@ -7,9 +7,11 @@ import { theme, statusBarScheme } from './src/colors'
 import HomeScreen from './src/screen/Home'
 import PostScreen from './src/screen/Post'
 import SavedScreen from './src/screen/Saved'
+import UserScreen from './src/screen/User'
 import * as NavigationBar from 'expo-navigation-bar'
 import script from './src/script.json'
 
+const TAB_NAVIGATION_ICON_SIZE = 30
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
 
@@ -22,7 +24,13 @@ const icons = {
 function chooseTabBarIcon (route, focused) {
   const screenIcons = icons[route.name]
   const icon = screenIcons[focused ? 'in' : 'out']
-  return (<Ionicons name={icon} size={30} color={theme.colors.primary} />)
+  return (
+    <Ionicons
+      name={icon}
+      size={TAB_NAVIGATION_ICON_SIZE}
+      color={theme.colors.primary}
+    />
+  )
 }
 
 const TabNavigator = () => (
@@ -56,6 +64,11 @@ const App = () => (
         name="Post"
         options={{ title: script.screenTitles.post }}
         component={PostScreen}
+      />
+      <Stack.Screen
+        name="User"
+        options={{ title: script.screenTitles.user }}
+        component={UserScreen}
       />
     </Stack.Navigator>
     <StatusBar style={statusBarScheme} />

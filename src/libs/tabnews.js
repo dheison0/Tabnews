@@ -1,5 +1,6 @@
 import axios, { AxiosError } from 'axios'
 
+const ITEMS_PER_PAGE = 30
 const strategy = (title, value) => ({ title, value })
 
 export const homepageStrategies = [
@@ -8,35 +9,44 @@ export const homepageStrategies = [
   strategy('Antigos', 'old')
 ]
 
-export function findStrategyInformationByValue (value) {
+export function findStrategyInformationByValue(value) {
   return homepageStrategies.find((item) => item.value === value)
 }
 
 export class TabNews {
   baseUrl = 'https://www.tabnews.com.br/api/v1'
 
-  async apiGet (path, params) {
+  async apiGet(path, params) {
     const response = await axios.get(`${this.baseUrl}/${path}`, { params })
     return response.data
   }
 
-  async getContents (page, strategy) {
-    const response = await this.apiGet('contents', { page, strategy, per_page: 30 })
+  async getContents(page, strategy) {
+    const response = await this.apiGet('contents', { page, strategy, per_page: ITEMS_PER_PAGE })
     return response
   }
 
-  async getPost (user, slug) {
+  async getPost(user, slug) {
     const response = await this.apiGet(`contents/${user}/${slug}`)
     return response
   }
 
-  async getComments (user, slug) {
+  async getComments(user, slug) {
     const response = await this.apiGet(`contents/${user}/${slug}/children`)
+    return response
+  }
+
+  async getPostsFromUser(user, page) {
+    const response = await this.apiGet(user, {
+      per_page: ITEMS_PER_PAGE,
+      strategy: 'new',
+      page
+    })
     return response
   }
 }
 
-export function errorHandler (err) {
+export function errorHandler(err) {
   console.error('errorHandler', err)
   switch (err.code) {
     case AxiosError.ERR_NETWORK:

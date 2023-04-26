@@ -1,10 +1,9 @@
 import { Component } from 'react'
 import { ToastAndroid, View } from 'react-native'
 import { findStrategyInformationByValue, errorHandler, TabNews } from '../../libs/tabnews'
-import { prepareData } from './utils'
 import { StrategyChooser, StrategyChooserHeaderButton } from './StrategyChooser'
 import LoadingIndicator from '../../component/LoadingIndicator'
-import PostList from './PostList'
+import PostList from '../../component/PostList'
 import Error from '../../component/Error'
 import PropTypes from 'prop-types'
 
@@ -66,7 +65,7 @@ class HomeScreen extends Component {
         return this.setState({ loading: false, endOfResults: true })
       }
       this.setState({
-        data: [...this.state.data, ...newData.map(prepareData)],
+        data: [...this.state.data, ...newData],
         page: this.state.page + 1,
         loading: false
       })

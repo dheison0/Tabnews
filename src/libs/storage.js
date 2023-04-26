@@ -3,13 +3,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 export const addBookmark = async (post) => {
   const time = new Date().getTime()
   await AsyncStorage.setItem(
-    `@bookmark:${post.owner}/${post.slug}`,
-    JSON.stringify({
-      addedAt: time,
-      title: post.title,
-      owner: post.owner,
-      slug: post.slug
-    })
+    `@bookmark:${post.owner_username}/${post.slug}`,
+    JSON.stringify({ addedAt: time, post })
   )
 }
 
@@ -25,10 +20,10 @@ export const getBookmarks = async () => {
 }
 
 export const removeBookmark = async (post) => {
-  await AsyncStorage.removeItem(`@bookmark:${post.owner}/${post.slug}`)
+  await AsyncStorage.removeItem(`@bookmark:${post.owner_username}/${post.slug}`)
 }
 
 export const isBookmarked = async (post) => {
-  const item = await AsyncStorage.getItem(`@bookmark:${post.owner}/${post.slug}`)
+  const item = await AsyncStorage.getItem(`@bookmark:${post.owner_username}/${post.slug}`)
   return item !== null
 }

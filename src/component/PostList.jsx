@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { FlatList } from 'react-native'
 import PostItem from './PostItem'
-import LoadingIndicator from '../../component/LoadingIndicator'
+import LoadingIndicator from './LoadingIndicator'
 import PropTypes from 'prop-types'
 
 const PostList = ({ data, navigation, loadMore, reload, endOfResults = false }) => {

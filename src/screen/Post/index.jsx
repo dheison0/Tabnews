@@ -41,7 +41,7 @@ class PostScreen extends PureComponent {
 
   loadData () {
     const { post } = this.props.route.params
-    this.tabnews.getPost(post.owner, post.slug)
+    this.tabnews.getPost(post.owner_username, post.slug)
       .then(data => this.processMarkdown(data))
       .catch(err => this.setState({ loading: false, error: errorHandler(err) }))
   }
