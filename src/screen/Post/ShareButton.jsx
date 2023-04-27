@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { Pressable, Share, ToastAndroid } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import { theme } from '../../colors'
+import { colors } from '../../colors'
 import PropTypes from 'prop-types'
 import styles from './styles'
 
@@ -12,7 +12,7 @@ const ShareButton = ({ post }) => {
   }
   return (
     <Pressable style={styles.main.headerItem} onPress={share}>
-      <Ionicons name="md-share-social" size={24} color={theme.colors.primary} />
+      <Ionicons name="md-share-social" size={24} color={colors.primary} />
     </Pressable>
   )
 }

@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios'
 
-const ITEMS_PER_PAGE = 30
+export const ITEMS_PER_PAGE = 30
 const strategy = (title, value) => ({ title, value })
 
 export const homepageStrategies = [
@@ -37,7 +37,7 @@ export class TabNews {
   }
 
   async getPostsFromUser(user, page) {
-    const response = await this.apiGet(user, {
+    const response = await this.apiGet(`contents/${user}`, {
       per_page: ITEMS_PER_PAGE,
       strategy: 'new',
       page

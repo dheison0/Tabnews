@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { theme } from '../../colors'
+import { colors } from '../../colors'
 
 const styles = StyleSheet.create({
   main: {
@@ -20,15 +20,15 @@ const styles = StyleSheet.create({
       fontSize: 22,
       fontWeight: 'bold',
       marginBottom: 10,
-      color: theme.colors.text
+      color: colors.text
     },
     commentsTitle: {
       paddingTop: 4,
       borderTopWidth: 2,
-      borderTopColor: theme.colors.border,
+      borderTopColor: colors.border,
       marginVertical: 8,
       fontSize: 18,
-      color: theme.colors.text
+      color: colors.text
     }
   },
   comment: {
@@ -37,14 +37,14 @@ const styles = StyleSheet.create({
       padding: 4,
       borderWidth: 2,
       borderRadius: 6,
-      borderColor: theme.colors.border
+      borderColor: colors.border
     },
     header: {
       flexDirection: 'row',
       justifyContent: 'space-between'
     },
     headerText: {
-      color: theme.colors.primary
+      color: colors.primary
     }
   },
   noComments: {
@@ -54,16 +54,16 @@ const styles = StyleSheet.create({
   },
   markdownRenderer: {
     body: {
-      color: theme.colors.text,
-      backgroundColor: theme.colors.background,
+      color: colors.text,
+      backgroundColor: colors.background,
       padding: 6
     },
     code_inline: {
-      backgroundColor: theme.colors.notification
+      backgroundColor: colors.notification
     },
     fence: {
-      borderColor: theme.colors.border,
-      backgroundColor: theme.colors.border
+      borderColor: colors.border,
+      backgroundColor: colors.border
     }
   }
 })

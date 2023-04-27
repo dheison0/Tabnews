@@ -2,13 +2,13 @@ import { memo } from 'react'
 import { homepageStrategies } from '../../libs/tabnews'
 import { Modal, Text, View, Pressable } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import { theme } from '../../colors'
+import { colors } from '../../colors'
 import styles from './styles'
 import PropTypes from 'prop-types'
 
 export const StrategyChooserHeaderButton = ({ onPress }) => (
   <Pressable onPress={onPress} style={[styles.strategyChooser.centeredView, styles.strategyChooser.headerButton]}>
-    <Ionicons size={20} name='md-filter' color={theme.colors.primary} />
+    <Ionicons size={20} name='md-filter' color={colors.primary} />
   </Pressable>
 )
 StrategyChooserHeaderButton.propTypes = {

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { theme } from '../../colors'
+import { colors } from '../../colors'
 
 const styles = StyleSheet.create({
   root: {
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center'
     },
     text: {
-      color: theme.colors.text
+      color: colors.text
     }
   },
   item: {
@@ -22,10 +22,10 @@ const styles = StyleSheet.create({
     title: {
       fontSize: 16,
       fontWeight: '500',
-      color: theme.colors.text
+      color: colors.text
     },
     owner: {
-      color: theme.colors.text
+      color: colors.text
     }
   }
 })

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Pressable, ToastAndroid } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import { theme } from '../../colors'
+import { colors } from '../../colors'
 import { addBookmark, isBookmarked, removeBookmark } from '../../libs/storage'
 import PropTypes from 'prop-types'
 import styles from './styles'
@@ -29,7 +29,7 @@ const SaveButton = ({ post }) => {
     <Pressable style={styles.main.headerItem} onPress={onPress}>
       <Ionicons
         name={marked ? 'md-bookmark' : 'md-bookmark-outline'}
-        color={theme.colors.primary}
+        color={colors.primary}
         size={24}
       />
     </Pressable>

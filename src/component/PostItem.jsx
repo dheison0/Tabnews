@@ -1,14 +1,26 @@
 import { memo } from 'react'
 import { humanReadableDate } from '../libs/utils'
 import PropTypes from 'prop-types'
-import { theme } from '../colors'
+import { colors } from '../colors'
 import { View, Text, StyleSheet, Pressable } from 'react-native'
+
+const MAX_SIZE_OF_BODY_AS_TITLE = 45
+const bodyAsTitle = (body) => {
+  let title = body.slice(undefined, MAX_SIZE_OF_BODY_AS_TITLE)
+  title = title.trim()
+  if (body.length > MAX_SIZE_OF_BODY_AS_TITLE) {
+    title += '...'
+  }
+  return title
+}
 
 const PostItem = ({ post, navigation }) => (
   <Pressable
     style={styles.container}
     onPress={() => navigation.navigate('Post', { post })}>
-    <Text style={styles.title}>{post.title}</Text>
+    <Text style={styles.title}>
+      {post.title ?? bodyAsTitle(post.body)}
+    </Text>
     <View style={styles.informations}>
       <Pressable
         style={{ flex: 1 }}
@@ -40,7 +52,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: '500',
-    color: theme.colors.text,
+    color: colors.text,
     marginBottom: 3
   },
   informations: {
@@ -49,8 +61,8 @@ const styles = StyleSheet.create({
   },
   informationText: {
     flex: 1,
-    color: '#DDD',
-    fontSize: 12
+    color: colors.information,
+    fontSize: 13
   }
 })
 

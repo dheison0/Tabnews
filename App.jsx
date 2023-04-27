@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Ionicons } from '@expo/vector-icons'
-import { theme, statusBarScheme } from './src/colors'
+import { colors, statusBarScheme, navigatorTheme } from './src/colors'
 import HomeScreen from './src/screen/Home'
 import PostScreen from './src/screen/Post'
 import SavedScreen from './src/screen/Saved'
@@ -28,7 +28,7 @@ function chooseTabBarIcon (route, focused) {
     <Ionicons
       name={icon}
       size={TAB_NAVIGATION_ICON_SIZE}
-      color={theme.colors.primary}
+      color={colors.primary}
     />
   )
 }
@@ -53,7 +53,7 @@ const TabNavigator = () => (
 )
 
 const App = () => (
-  <NavigationContainer theme={theme}>
+  <NavigationContainer theme={navigatorTheme}>
     <Stack.Navigator>
       <Stack.Screen
         name="Main"
@@ -75,7 +75,7 @@ const App = () => (
   </NavigationContainer>
 )
 
-NavigationBar.setBackgroundColorAsync(theme.colors.background)
+NavigationBar.setBackgroundColorAsync(colors.background)
 NavigationBar.setButtonStyleAsync(statusBarScheme)
 
 export default App

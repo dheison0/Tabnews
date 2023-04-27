@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { theme } from '../../colors'
+import { colors } from '../../colors'
 
 const styles = StyleSheet.create({
   postItem: {
@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     title: {
       fontSize: 16,
       fontWeight: '500',
-      color: theme.colors.text
+      color: colors.text
     },
     information: {
       flex: 1,
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center'
     },
     modalView: {
-      backgroundColor: theme.custom.strategyChooser.background,
+      backgroundColor: colors.border,
       borderRadius: 15,
       padding: 20,
       alignItems: 'center',
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     title: {
       fontSize: 18,
       marginBottom: 8,
-      color: theme.colors.text
+      color: colors.text
     },
     optionsBox: {
       marginHorizontal: 25
@@ -48,15 +48,15 @@ const styles = StyleSheet.create({
       elevation: 5
     },
     buttonText: {
-      color: theme.custom.strategyChooser.buttonText,
+      color: colors.text,
       marginVertical: 10,
       marginHorizontal: 20
     },
     optionButton: {
-      backgroundColor: theme.colors.border
+      backgroundColor: colors.primary
     },
     cancelButton: {
-      backgroundColor: theme.colors.notification
+      backgroundColor: colors.notification
     }
   }
 })

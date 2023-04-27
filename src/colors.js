@@ -1,41 +1,37 @@
 import { Appearance } from 'react-native'
 
 const dark = {
-  dark: true,
-  colors: {
-    primary: '#8be9fd',
-    background: '#282a36',
-    card: '#282a36',
-    text: '#f8f8f2',
-    border: '#44475a',
-    notification: '#ff5555'
-  },
-  custom: {
-    strategyChooser: {
-      background: '#6272a4',
-      buttonText: '#FFF'
-    }
-  }
+  background: '#282a36',
+  border: '#44475a',
+  text: '#f8f8f2',
+  highlightText: '#6272a4',
+  notification: '#ff5555',
+  primary: '#8be9fd',
+  information: '#fff'
 }
 
 const light = {
-  dark: false,
-  colors: {
-    primary: 'rgb(0, 122, 255)',
-    background: '#FFF',
-    card: '#FFF',
-    text: 'rgb(28, 28, 30)',
-    border: 'rgb(216, 216, 216)',
-    notification: 'rgb(255, 59, 48)'
-  },
-  custom: {
-    strategyChooser: {
-      background: '#FFF',
-      buttonText: '#224'
-    }
-  }
+  background: '#ffffff',
+  border: '#d8d8d8',
+  text: '#1c1c1e',
+  highlightText: '#9090ff',
+  notification: '#ff3b30',
+  primary: '#007aff',
+  information: '#1f1f1f'
 }
 
 export const colorScheme = Appearance.getColorScheme()
 export const statusBarScheme = colorScheme === 'dark' ? 'light' : 'dark'
-export const theme = colorScheme === 'dark' ? dark : light
+export const colors = colorScheme === 'dark' ? dark : light
+
+export const navigatorTheme = {
+  dark: colorScheme === 'dark',
+  colors: {
+    primary: colors.primary,
+    background: colors.background,
+    card: colors.background,
+    text: colors.text,
+    border: colors.border,
+    notification: colors.notification
+  }
+}
