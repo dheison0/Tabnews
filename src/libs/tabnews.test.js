@@ -2,7 +2,7 @@ import { AxiosError } from 'axios'
 import { TabNews } from './tabnews'
 
 const tabnews = new TabNews()
-class NoErrorThrownError extends Error {}
+class NoErrorThrownError extends Error { }
 const getError = async (call) => {
   try {
     await call()
@@ -38,7 +38,7 @@ describe('getContents', () => {
 
 describe('getPost', () => {
   test('Existent', async () => {
-    const post = await tabnews.getPost('dheisom', 'instalacao-do-docker-no-alpine')
+    const post = await tabnews.getPost('dheison0', 'instalacao-do-docker-no-alpine')
     expect(post instanceof Object).toBe(true)
   })
 
@@ -51,7 +51,7 @@ describe('getPost', () => {
 
 describe('getComments', () => {
   test('Post with comments', async () => {
-    const comments = await tabnews.getComments('dheisom', 'decoradores-em-python')
+    const comments = await tabnews.getComments('dheison0', 'decoradores-em-python')
     expect(comments).not.toBe([])
   })
 
